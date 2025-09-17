@@ -18,13 +18,13 @@ O projeto está dividido em 5 principais automações, cada uma focada em um asp
 - **Objetivo:** Editar ou atribuir uma nota para um aluno específico.
 - **Funcionalidade:** Ao contrário da marcação de lote, essa automação permite a personalização de notas para cada aluno de forma independente.
 
-### 4. **Preenchimento e f5**
-- **Objetivo:** Preencher o campo de Lançamento de notas e atualizar a página (simulando o "F5").
-- **Funcionalidade:** Verifica se, após atualizar a página, as informações preenchidas são mantidas ou se há algum erro ao recarregar os dados.
-
-### 5. **Seleção de algumas notas**
+### 4. **Seleção de algumas notas**
 - **Objetivo:** Editar Notas  específicas.
 - **Funcionalidade:** Focada em cenários onde se precisa alterar apenas uma parte das notas.
+    
+### 5. **Preenchimento e f5**
+- **Objetivo:** Preencher o campo de Lançamento de notas e atualizar a página (simulando o "F5").
+- **Funcionalidade:** Verifica se, após atualizar a página, as informações preenchidas são mantidas ou se há algum erro ao recarregar os dados.
 
 ## Tecnologias Usadas
 
@@ -69,3 +69,14 @@ O projeto está dividido em 5 principais automações, cada uma focada em um asp
     ```
 
 2. O Cypress será aberto e você poderá rodar os testes diretamente no navegador.
+   
+   ## Agradecimentos
+
+Gostaria de expressar minha sincera gratidão à **Deborah**, que será a avaliadora deste projeto. 
+
+Agradeço desde já pela atenção dedicada à análise do meu trabalho.
+
+Estou à disposição para qualquer dúvida ou feedback, e espero que os testes apresentados atendam às expectativas.
+
+**Muito obrigado!**
+

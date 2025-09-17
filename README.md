@@ -36,29 +36,36 @@ O projeto está dividido em 5 principais automações, cada uma focada em um asp
 ### Pré-requisitos
 - **Node.js**: Você precisa ter o Node.js instalado no seu computador. Para instalar, siga a [documentação oficial](https://nodejs.org/).
 
-### Instalação
+## Instalação
 
 1. Clone este repositório para o seu computador:
+
     ```bash
     git clone https://github.com/IvoAvancini/ProescTest.git
     ```
 
 2. Acesse o diretório do projeto:
+
     ```bash
     cd ProescTest
     ```
 
-3. Instale as dependências do projeto:
+3. Em cada pasta que contém os testes, execute o comando abaixo para instalar as dependências do projeto:
+
     ```bash
     npm install
     ```
 
-### Executando os Testes
+    **Observação**: Você deve executar o comando `npm install` **dentro de cada pasta individualmente**, pois cada uma delas tem seu próprio `package.json`.
 
-1. Após instalar as dependências, execute o Cypress:
+---
+
+## Executando os Testes
+
+1. Após instalar as dependências em cada pasta, execute o Cypress com o comando:
+
     ```bash
     npx cypress open
     ```
 
-2. O Cypress será aberto e você poderá rodar os testes em seu navegador preferido.
-
+2. O Cypress será aberto e você poderá rodar os testes diretamente no navegador.

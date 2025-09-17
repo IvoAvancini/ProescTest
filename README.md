@@ -1,6 +1,8 @@
-# Automação de Testes - Proesc
+# Automação de Testes e Planilha de Testes - Proesc
 
-Este repositório contém um conjunto de testes automatizados para o sistema **Proesc**, utilizando a ferramenta **Cypress**. Os testes cobrem diferentes cenários do sistema, garantindo que as funcionalidades de edição de notas, preenchimentos dos campos de lançamento de notas e atualização da página funcionem corretamente.
+Este repositório contém  um conjunto de testes automatizados para o sistema Proesc e uma **planilha detalhada** contendo **Cenários de Teste**, **Bug Report** e **Test Report**. As automações e a planilha complementam-se, garantindo uma cobertura ampla dos testes do sistema e uma documentação organizada dos resultados.
+
+Utilizando a ferramenta **Cypress**. Os testes cobrem diferentes cenários do sistema, garantindo que as funcionalidades de edição de notas, preenchimentos dos campos de lançamento de notas e atualização da página funcionem corretamente.
 
 ## Estrutura do Projeto
 

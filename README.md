@@ -27,6 +27,17 @@ O projeto está dividido em 5 principais automações, cada uma focada em um asp
 ### 5. **Preenchimento e f5**
 - **Objetivo:** Preencher o campo de Lançamento de notas e atualizar a página (simulando o "F5").
 - **Funcionalidade:** Verifica se, os campos preenchem corretamente e após atualizar a página, as informações preenchidas são mantidas ou se há algum erro ao recarregar os dados.
+ 
+  ### **Planilha de Testes**
+Além das automações, o repositório também contém uma **planilha de testes** que ajuda a documentar os cenários de teste, os bugs encontrados e os resultados dos testes realizados.
+
+A planilha está dividida nas seguintes seções:
+
+- **Cenário de Teste**: Detalha o planejamento e execução de cada teste manual e automatizado.
+- **Bug Report**: Relata qualquer problema ou erro encontrado durante os testes, com sugestões de correção e melhorias.
+- **Test Report**: Contém os resultados dos finais dos testes.
+
+O arquivo da planilha pode ser encontrado como `Cenário de teste.xlsx` neste repositório.
 
 ## Tecnologias Usadas
 

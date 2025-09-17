@@ -24,7 +24,7 @@ O projeto está dividido em 5 principais automações, cada uma focada em um asp
     
 ### 5. **Preenchimento e f5**
 - **Objetivo:** Preencher o campo de Lançamento de notas e atualizar a página (simulando o "F5").
-- **Funcionalidade:** Verifica se, após atualizar a página, as informações preenchidas são mantidas ou se há algum erro ao recarregar os dados.
+- **Funcionalidade:** Verifica se, os campos preenchem corretamente e após atualizar a página, as informações preenchidas são mantidas ou se há algum erro ao recarregar os dados.
 
 ## Tecnologias Usadas
 

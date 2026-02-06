@@ -1,57 +1,63 @@
+Cypress.on('uncaught:exception', (err) => {
+  console.error('Erro não capturado:', err.message)
+  return false
+})
+
 describe('Proesc', () => {
-  it('Campos e f5', () => {
+  it('Campos e F5', () => {
     cy.visit('https://app.proesc.com/login')
-    
-    // Preencher o campo de email 
-    cy.get('[name="email"]').type('ivoavancini@hotmail.com').should('have.value', 'ivoavancini@hotmail.com');
-    
-    // Preencher o campo de senha 
-    cy.get('[name="password"]').type('Ivonando123.').should('have.value', 'Ivonando123.');
 
-    // entrar com login
-    cy.get('.g-recaptcha').click();
-    Cypress.on('uncaught:exception', (err, runnable) => {
-    // Ignora a falha e permite que o teste continue
-    console.error('Erro não capturado:', err);
-    return false;  // Impede o Cypress de falhar o teste
-  
-});
-    cy.get('.bi-mortarboard').click() //clica na aba "Pedagógico"
-    cy.get('[style="display: block;"] > :nth-child(1) > :nth-child(1)').click() // clica na aba "Professor"
-    cy.get('[style="display: block;"] > :nth-child(5) > [href="#"]').click() // clica na aba "Avaliações"
-    cy.get(':nth-child(1) > :nth-child(2) > .open > ul > :nth-child(2) > a').click() //clica na aba "Notas por avaliação
-    cy.get('[name="diario_id"]')  // Seletor para o campo Diário
-    .select('9715518')  // Seleciona o valor "2º BIMESTRE"
-    .should('have.value', '9715518');  // Verifica se o valor foi selecionado corretamente
-    cy.get('[name="diario_id"]')  // Seletor para o campo Diário
-    .select('9715517')  // Seleciona o valor "1º BIMESTRE"
-    .should('have.value', '9715517');  // Verifica se o valor foi selecionado corretamente
+    // Login
+    cy.get('[name="email"]')
+      .should('be.visible')
+      .type('ivoavancini@hotmail.com')
+      .should('have.value', 'ivoavancini@hotmail.com')
 
-    cy.get('.ativar-edicao-todos'). click()
-    cy.get('[data-row="row_2"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]')
-      .clear()  // Limpa o campo
-      .type('3');  // Digita a primeira nota da lista
+    cy.get('[name="password"]')
+      .should('be.visible')
+      .type('Ivonando123.', { log: false })
+      .should('have.value', 'Ivonando123.')
 
-    // Preencher primeira nota
-    cy.get('[data-row="row_3"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]')
-      .clear()  // Limpa o campo
-      .type('6');  // Digita a segunda nota da lista
+    cy.get('.g-recaptcha').should('be.visible').click()
 
-    // Preencher segunda nota
-    cy.get('[data-row="row_4"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]')
-      .clear()  // Limpa o campo
-      .type('9');  // Digita a terceira nota da lista
+    // Navegação até "Notas por avaliação"
+    cy.get('.bi-mortarboard').should('be.visible').click()
+    cy.get('[style="display: block;"] > :nth-child(1) > :nth-child(1)').should('be.visible').click()
+    cy.get('[style="display: block;"] > :nth-child(5) > [href="#"]').should('be.visible').click()
+    cy.get(':nth-child(1) > :nth-child(2) > .open > ul > :nth-child(2) > a')
+      .should('be.visible')
+      .click()
 
-    // Preencher terceira nota
-    cy.get('[data-row="row_5"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]')
-      .clear()  // Limpa o campo
-      .type('10');  // Digita a quarta nota da lista
+    // Seleciona diário (2º e depois 1º bimestre)
+    cy.get('[name="diario_id"]').should('be.visible').select('9715518').should('have.value', '9715518')
+    cy.get('[name="diario_id"]').select('9715517').should('have.value', '9715517')
 
-    // Salvar as alterações
-    cy.get('.col-md-4 > .btn-primary').click();  // Clica para salvar
-   
+    // Ativa edição em massa
+    cy.get('.ativar-edicao-todos').should('be.visible').click()
 
+    const notaRow2 = '[data-row="row_2"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]'
+    const notaRow3 = '[data-row="row_3"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]'
+    const notaRow4 = '[data-row="row_4"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]'
+    const notaRow5 = '[data-row="row_5"] > .nota-avaliacao > .input-block > [name="avaliacoes[4742982]"]'
 
-       
-  });
+    // Preenche notas
+    cy.get(notaRow2).should('be.visible').clear().type('3').should('have.value', '3')
+    cy.get(notaRow3).should('be.visible').clear().type('6').should('have.value', '6')
+    cy.get(notaRow4).should('be.visible').clear().type('9').should('have.value', '9')
+    cy.get(notaRow5).should('be.visible').clear().type('10').should('have.value', '10')
+
+    // Salva
+    cy.get('.col-md-4 > .btn-primary').should('be.visible').click()
+
+    // F5 e valida persistência
+    cy.reload()
+
+    // Se após reload a tela não vier carregada, re-seleciona o diário
+    cy.get('[name="diario_id"]').should('be.visible').select('9715517').should('have.value', '9715517')
+
+    cy.get(notaRow2).should('have.value', '3')
+    cy.get(notaRow3).should('have.value', '6')
+    cy.get(notaRow4).should('have.value', '9')
+    cy.get(notaRow5).should('have.value', '10')
+  })
 })

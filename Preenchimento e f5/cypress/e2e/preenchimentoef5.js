@@ -1,47 +1,49 @@
+Cypress.on('uncaught:exception', (err) => {
+  console.error('Erro não capturado:', err.message)
+  return false
+})
+
 describe('Proesc', () => {
-  it('Campos e f5', () => {
+  it('Campos e F5', () => {
     cy.visit('https://app.proesc.com/login')
-    
-    // Preencher o campo de email 
-    cy.get('[name="email"]').type('ivoavancini@hotmail.com').should('have.value', 'ivoavancini@hotmail.com');
-    
-    // Preencher o campo de senha 
-    cy.get('[name="password"]').type('Ivonando123.').should('have.value', 'Ivonando123.');
 
-    // entrar com login
-    cy.get('.g-recaptcha').click();
-    Cypress.on('uncaught:exception', (err, runnable) => {
-    // Ignora a falha e permite que o teste continue
-    console.error('Erro não capturado:', err);
-    return false;  // Impede o Cypress de falhar o teste
-  
-});
-    cy.get('.bi-mortarboard').click() //clica na aba "Pedagógico"
-    cy.get('[style="display: block;"] > :nth-child(1) > :nth-child(1)').click() // clica na aba "Professor"
-    cy.get('[style="display: block;"] > :nth-child(5) > [href="#"]').click() // clica na aba "Avaliações"
-    cy.get(':nth-child(1) > :nth-child(2) > .open > ul > :nth-child(2) > a').click() //clica na aba "Notas por avaliação
-     // Selecionar o "Exercício" 
-    cy.get('[name="exercicio_id"]')  // Seletor para o campo Exercício
-      .select('15670')  // Seleciona o valor correto, que representa "2025"
-      .should('have.value', '15670');  // Verifica se o valor foi selecionado corretamente
+    // Login
+    cy.get('[name="email"]')
+      .should('be.visible')
+      .type('ivoavancini@hotmail.com')
+      .should('have.value', 'ivoavancini@hotmail.com')
 
+    cy.get('[name="password"]')
+      .should('be.visible')
+      .type('Ivonando123.', { log: false })
+      .should('have.value', 'Ivonando123.')
 
-    // Selecionar a "Turma"
-    cy.get('[name="turma_id"]')  // Seletor para o campo Turma
-      .select('391354')  // Seleciona o valor correto, que representa "TURMA SELEÇÃO QA"
-      .should('have.value', '391354');  // Verifica se o valor foi selecionado corretamente
+    cy.get('.g-recaptcha').should('be.visible').click()
 
-    // Selecionar a "Disciplina"
-    cy.get('[name="disciplina_id"]')  // Seletor para o campo Disciplina
-      .select('2526975')  // Seleciona o valor correto, que representa "MATEMÁTICA"
-      .should('have.value', '2526975');  // Verifica se o valor foi selecionado corretamente
+    // Navegar até "Notas por avaliação"
+    cy.get('.bi-mortarboard').should('be.visible').click()
+    cy.get('[style="display: block;"] > :nth-child(1) > :nth-child(1)').should('be.visible').click()
+    cy.get('[style="display: block;"] > :nth-child(5) > [href="#"]').should('be.visible').click()
+    cy.get(':nth-child(1) > :nth-child(2) > .open > ul > :nth-child(2) > a')
+      .should('be.visible')
+      .click()
 
-    // Selecionar o "Diário"
-    cy.get('[name="diario_id"]')  // Seletor para o campo Diário
-      .select('9715517')  // Seleciona o valor correto, que representa "1º BIMESTRE"
-      .should('have.value', '9715517');  // Verifica se o valor foi selecionado corretamente
-       cy.wait(2000);
-      cy.reload(); // f5 na página
+    // Seleções (filtros)
+    cy.get('[name="exercicio_id"]').should('be.visible').select('15670').should('have.value', '15670')
+    cy.get('[name="turma_id"]').should('be.visible').select('391354').should('have.value', '391354')
+    cy.get('[name="disciplina_id"]').should('be.visible').select('2526975').should('have.value', '2526975')
+    cy.get('[name="diario_id"]').should('be.visible').select('9715517').should('have.value', '9715517')
 
-  });
-});
+    // Garante que a tela carregou o conteúdo antes do F5
+    cy.get('[name="diario_id"]').should('have.value', '9715517')
+
+    // F5 (recarregar) e validar que os filtros continuam selecionados
+    cy.reload()
+
+    cy.get('[name="exercicio_id"]').should('have.value', '15670')
+    cy.get('[name="turma_id"]').should('have.value', '391354')
+    cy.get('[name="disciplina_id"]').should('have.value', '2526975')
+    cy.get('[name="diario_id"]').should('have.value', '9715517')
+  })
+})
+

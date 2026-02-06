@@ -1,60 +1,64 @@
-# Proesc – Testes End-to-End (E2E) com Cypress
+# Proesc — Testes End-to-End (E2E) com Cypress
 
-Projeto de automação de testes End-to-End (E2E) desenvolvido para validar fluxos críticos do sistema **Proesc**, com foco em lançamento, edição e persistência de notas.
+Projeto de automação de testes E2E com Cypress para validar fluxos críticos do sistema Proesc, com foco em lançamento, edição e persistência de notas (regras de negócio + confiabilidade do sistema).
 
-Além das automações, o projeto conta com uma planilha de testes contendo **cenários, registro de bugs e relatório de testes**, garantindo rastreabilidade e organização do processo de QA.
+Além das automações, o projeto inclui uma planilha de QA com cenários, registro de bugs e relatório de testes, garantindo rastreabilidade e organização do processo.
 
----
+# 🎯 Objetivo
 
-## 🎯 Objetivo
-Demonstrar experiência prática em **automação de testes**, validação de regras de negócio e garantia da qualidade de sistemas web, simulando cenários reais de uso.
+Demonstrar experiência prática em Qualidade de Software (QA), automação de testes E2E, validação de regras de negócio e garantia da qualidade em sistemas web, simulando cenários reais de uso.
 
----
+# 🧪 Escopo dos Testes Automatizados (5 cenários)
 
-## 🧪 Escopo dos Testes Automatizados
-O projeto é composto por **5 automações principais**:
+Marcação de todos os alunos em lote — atribuição e edição de notas em massa
 
-1. **Marcação de todos os alunos em lote**  
-   - Valida a atribuição e edição de notas em massa.
+Marcação de um lote específico — seleção de grupo sem impactar toda a turma
 
-2. **Marcação de um lote específico**  
-   - Seleção de um grupo específico de alunos sem impactar toda a turma.
+Edição de nota individual — atribuição/alteração de nota para um aluno específico
 
-3. **Edição de nota individual**  
-   - Atribuição e alteração de nota para um aluno específico.
+Edição de notas selecionadas — alteração parcial validando regras específicas
 
-4. **Edição de notas selecionadas**  
-   - Alteração parcial de notas, validando regras específicas.
+Persistência após atualização (F5) — valida que as notas permanecem após recarregar a página
 
-5. **Preenchimento de notas com atualização da página (F5)**  
-   - Verifica persistência dos dados após recarregamento da página.
+# 📄 Documentação de Testes
 
----
+O repositório contém a planilha Cenário de teste.xlsx com:
 
-## 📄 Documentação de Testes
-O repositório inclui a planilha **Cenário de teste.xlsx**, contendo:
+Cenários de Teste (manual e automatizado)
 
-- **Cenários de Teste** (manual e automatizado)
-- **Bug Report**
-- **Test Report**
+Bug Report
 
-Essa documentação complementa as automações, garantindo visão completa do processo de QA.
+Test Report
 
----
+# 🛠 Tecnologias Utilizadas
 
-## 🛠️ Tecnologias Utilizadas
-- Cypress
-- JavaScript
-- Node.js
+Cypress
 
----
+JavaScript
+
+Node.js
 
 ## ▶️ Como Executar o Projeto
 
-### Pré-requisitos
-- Node.js instalado
-
 ### Instalação
-Clone o repositório:
 ```bash
 git clone https://github.com/IvoAvancini/ProescTest.git
+cd ProescTest
+npm install
+```
+## Executar testes
+
+### Headless:
+``` bash
+npx cypress run
+```
+### Interface do Cypress:
+```bash
+npx cypress open
+```
+
+
+
+
+
+
